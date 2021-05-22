@@ -75,11 +75,12 @@ def name_content():
     name = yf.Ticker(tic)
 
 
-# rozmiary wykresów w siatce
 fig1 = plt.figure(figsize=(10, 7))
 
 
-def show_plots(year=2021, month=1, day=1):
+def show_plots(fig1, year=2021, month=1, day=1):
+    fig1 = plt.figure(figsize=(10, 7))
+
     # name_content()
     # tabela kursów historycznych
     hist = name.history(period="max")
@@ -164,7 +165,11 @@ def show_plots(year=2021, month=1, day=1):
     plt.setp(ax1.get_xticklabels(), visible=False)
     plt.subplots_adjust(hspace=0)  # ściśnięcie wykresów
     # plt.show()
+    # plt.gcf().canvas.draw()
+    # rozmiary wykresów w siatce
 
+    plot3 = tk.Frame(plotFrame, width=0, height=0)
+    plot3.grid(row=1, column=1)
     # TKINTER FIRST PLOT
     scatter1 = FigureCanvasTkAgg(fig1, plot3)
     scatter1.get_tk_widget().pack(side=tk.LEFT, fill=tk.BOTH, expand=1)
@@ -173,7 +178,7 @@ def show_plots(year=2021, month=1, day=1):
 # ------------------------------------------------------------------------------
 # Koniec wykresu
 # ------------------------------------------------------------------------------
-show_plots()
+show_plots(fig1)
 
 
 def inputs_value():
@@ -184,8 +189,9 @@ def inputs_value():
     year = int(yearValue)
     month = int(monthValue)
     day = int(dayValue)
-    show_plots(year, month, day)
-    plot3.grid(row=1, column=1)
+    fig1 = plt.figure(figsize=(10, 7))
+
+    show_plots(fig1, year, month, day)
 
 
 # ------------------------------------------------------------------------------
