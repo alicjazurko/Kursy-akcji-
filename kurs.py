@@ -18,7 +18,7 @@ root = tk.Tk()
 
 # ustawienia kontenera
 root.title("Analiza kursu akcji, statystyki i wskaźniki")
-root.geometry("1200x800")
+root.geometry("1920x1080")
 root.resizable(True, True)
 
 # miejsce na wykres zagnieżdżony (kurs, volume, RSI)
@@ -47,15 +47,10 @@ frameDataInputs.grid(row=2, column=1)
 # miejsce na dane do filtrowania
 inputsFrame = tk.Frame(frameDataInputs, width=0, height=0)
 inputsFrame.grid(row=1, column=1)
-# inputsFrame = tk.Frame(root, width=0, height=0)
-# inputsFrame.grid(row=2, column=1)
 
 # miejsce na tabelę ze wskaźnikami
-frameData = tk.Frame(frameDataInputs, width=100, height=200, bg="red")
+frameData = tk.Frame(frameDataInputs, width=0, height=0)
 frameData.grid(row=1, column=2)
-
-# -------------- WSKAŹNIKI -------------
-
 
 # --------------- INPUTY ---------------
 # nazwa spółki
@@ -98,7 +93,7 @@ dic = {}
 
 def show_multiples(tic):
 
-    frameData = tk.Frame(frameDataInputs, width=100, height=200, bg="red")
+    frameData = tk.Frame(frameDataInputs, width=0, height=0)
     frameData.grid(row=1, column=2)
 
     # Dane o spółce w dataframe
@@ -246,7 +241,6 @@ def realTime(tic):
 
     # pobranie ceny kursu z ostatniego dnia co minutę
     current_price = yf.download(tickers=tic, period="1d", interval="1m")
-    # print(current_price)
     close_price = current_price["Close"]  # pobranie ceny zamknięcia z tabeli
     # index tabeli (1 kolumna), ostatni dzień kursu - data
     date = current_price.index
